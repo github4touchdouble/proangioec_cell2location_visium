@@ -1,0 +1,9 @@
+anndata
+scanpy
+pandas
+squidpy
+matplotlib
+seaborn
+cell2location
+numpy
+python-dotenv
