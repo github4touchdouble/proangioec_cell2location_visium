@@ -34,7 +34,8 @@ In the root directory of the project, create a `.env` file and copy-paste the fo
 # Example .env file
 PATH_TO_SCATLAS=/PATH/TO/PLAQUE/ATLAS.h5ad
 PATH_TO_VISIUM=/PATH/TO/VISUM/SLIDES.h5ad
-PATH_TO_MODEL=./
+PATH_TO_ATLAS_MODEL2WO=./
+PATH_TO_MAP_MODEL2WO=./
 ```
 
 ### 5. Verify Setup
