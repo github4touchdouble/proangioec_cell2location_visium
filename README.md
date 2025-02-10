@@ -45,37 +45,3 @@ Ensure everything is installed correctly by running:
 python -m pip check
 ```
 
-### 1. Working on the `ipynb` File
-- The main analysis is conducted in a Jupyter Notebook (`.ipynb`).
-- Always create a new branch before making changes:  
-  ```sh
-  git checkout -b feature/your-feature-name
-  ```
-- Before committing, ensure that all cells are executed and outputs are saved.
-- To prevent merge conflicts, always clear unnecessary output cells before committing:
-  ```sh
-  jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace your_notebook.ipynb
-  ```
-- Use `nbdime` to compare and merge notebooks cleanly:
-  ```sh
-  nbdime diff your_notebook.ipynb
-  ```
-
-### 2. Version Control & Merging
-- Commit your changes with meaningful messages:
-  ```sh
-  git commit -m "Added spatial data analysis for XYZ"
-  ```
-- Push your changes to your branch:
-  ```sh
-  git push origin feature/your-feature-name
-  ```
-- Open a pull request (PR) and request a review before merging into `master`.
-- Resolve conflicts using `nbdime merge` instead of manually editing `.ipynb` files:
-  ```sh
-  nbdime merge your_notebook.ipynb
-  ```
-- Sync your branch with `master` regularly:
-  ```sh
-  git pull origin master
-  ```
