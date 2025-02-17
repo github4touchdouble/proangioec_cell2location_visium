@@ -56,11 +56,9 @@ python3 compare_plots.py plot1.png plot2.png plot3.png [output.png]
 ```
 
 ### Arguments:
-Arguments
-plot1: Path to the first plot image file.
-plot2: Path to the second plot image file.
-plot3: Path to the third plot image file.
-
+plot1: Path to the first plot image file. \
+plot2: Path to the second plot image file. \
+plot3: Path to the third plot image file. \
 output: Path to save the output comparison image (optional)
 
 ### Example
