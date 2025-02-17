@@ -63,5 +63,5 @@ plot3: Path to the third plot image file. \
 
 ### Example
 ```sh
-python3 compare_plots.py n5.png n7.png n10.png [-o diff_ncells_5_7_10.png]
+python3 compare_plots.py n5.png n7.png n10.png -o diff_ncells_5_7_10.png
 ```
