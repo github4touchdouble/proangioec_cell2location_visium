@@ -7,6 +7,11 @@ import argparse
 def compare_plots(plot1_file, plot2_file, plot3_file, output_file=None):
     print(f"Creating diff of {plot1_file}, {plot2_file}, and {plot3_file}...")
 
+    # Extract n_cells from filenames
+    n_cells_1 = plot1_file.split('/')[-1][1:-4]
+    n_cells_2 = plot2_file.split('/')[-1][1:-4]
+    n_cells_3 = plot3_file.split('/')[-1][1:-4]
+
     # Load plots in grayscale
     plot1 = cv2.imread(plot1_file, cv2.IMREAD_GRAYSCALE)
     plot2 = cv2.imread(plot2_file, cv2.IMREAD_GRAYSCALE)
@@ -30,32 +35,32 @@ def compare_plots(plot1_file, plot2_file, plot3_file, output_file=None):
     plt.figure(figsize=(15, 10))
 
     plt.subplot(2, 3, 1)
-    plt.title("Plot 1")
+    plt.title(f"n_cells_per_location = {n_cells_1}")
     plt.imshow(cv2.imread(plot1_file))
     plt.axis("off")
 
     plt.subplot(2, 3, 2)
-    plt.title("Plot 2")
+    plt.title(f"n_cells_per_location = {n_cells_2}")
     plt.imshow(cv2.imread(plot2_file))
     plt.axis("off")
 
     plt.subplot(2, 3, 3)
-    plt.title("Plot 3")
+    plt.title(f"n_cells_per_location = {n_cells_3}")
     plt.imshow(cv2.imread(plot3_file))
     plt.axis("off")
 
     plt.subplot(2, 3, 4)
-    plt.title("Diff 1-2")
+    plt.title(f"Diff of n_cells: {n_cells_1} - {n_cells_2}")
     plt.imshow(diff_12_inv, cmap='gray')
     plt.axis("off")
 
     plt.subplot(2, 3, 5)
-    plt.title("Diff 1-3")
+    plt.title(f"Diff of n_cells: {n_cells_2} - {n_cells_3}")
     plt.imshow(diff_13_inv, cmap='gray')
     plt.axis("off")
 
     plt.subplot(2, 3, 6)
-    plt.title("Diff 2-3")
+    plt.title(f"Diff of n_cells: {n_cells_1} - {n_cells_3}")
     plt.imshow(diff_23_inv, cmap='gray')
     plt.axis("off")
 
@@ -80,7 +85,7 @@ def main():
         "plot3", help="Path to the third plot file"
     )
     parser.add_argument(
-        "output", help="Define the output file, usually as png", default=None
+        "--output", "-o", help="Define the output file, usually as png", default=None
     )
 
     args = parser.parse_args()
