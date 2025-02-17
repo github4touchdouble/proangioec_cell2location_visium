@@ -1,2 +1,2 @@
 *.ipynb linguist-detectable
-*.py linguist-vendored
+*.py linguist-detectable
