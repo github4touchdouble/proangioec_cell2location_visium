@@ -66,3 +66,5 @@ plot3: Path to the third plot image file. \
 ```sh
 python3 compare_plots.py n5.png n7.png n10.png -o diff_ncells_5_7_10.png
 ```
+#### Example output
+![Output](https://github.com/user-attachments/assets/e6237cdf-c1c6-477d-a229-453649067843)
