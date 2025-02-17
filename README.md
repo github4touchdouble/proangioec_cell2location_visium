@@ -15,7 +15,7 @@ python -m venv venv
   ```sh
   venv\Scripts\activate
   ```
-- **Mac/Linux:**
+- **Mac/Linux:** (currently no model training with mps)
   ```sh
   source venv/bin/activate
   ```
