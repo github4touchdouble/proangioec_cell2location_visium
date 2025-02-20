@@ -9,6 +9,7 @@
 \usepackage{microtype}
 \usepackage{verbatim}
 \usepackage{natbib}
+\usepackage{subcaption}
 \graphicspath{ {./images/} }
 
 \title{Spatial Deconvolution of Pro-Angiogenic Endothelial Cells in Human Atherosclerotic Plaques Using Cell2Location}
@@ -143,20 +144,83 @@ We analyzed the localization of pro-angiogenic ECs, their co-localization with o
 %TODO: add plots
 %TODO: use N_cells 10 plots
 \subsection{Spatial Deconvolution Reveals Distinct Cellular Landscapes in Healthy vs.\ Atherosclerotic Arteries}
-We performed Cell2Location deconvolution on Visium spatial transcriptomic data derived from healthy (control) and atherosclerotic arterial samples. These samples included intermediate lesions, atheromas, and fibroatheromas, each displaying characteristic morphological features of progressive disease. By mapping eight key cell populations—EndoMT ECs, pro-angiogenic ECs, CD4 T cells, CD8 T cells, HMOX1\textsuperscript{+} macrophages, inflammatory macrophages, PLIN2\textsuperscript{+}/TREM1\textsuperscript{+} macrophages, and other macrophages—we captured a detailed landscape of tissue composition at the spot level. In controls, the vessel wall was generally thin and uniform, while atherosclerotic lesions showed substantial intimal thickening, plaque formation, and local necrosis or fibrosis. The color-coded probability maps produced by Cell2Location showed site-specific enrichments of immune or endothelial cell subtypes, reflecting the distinct microenvironments that develop as atherosclerosis advances.
+We performed Cell2Location deconvolution on Visium spatial transcriptomic data derived from healthy (control) and atherosclerotic arterial samples. These samples included intermediate lesions, atheromas, and fibroatheromas, each displaying characteristic morphological features of progressive disease. By mapping eight key cell populations—EndoMT ECs, pro-angiogenic ECs, CD4 T cells, CD8 T cells, HMOX1\textsuperscript{+} macrophages, inflammatory macrophages, PLIN2\textsuperscript{+}/TREM1\textsuperscript{+} macrophages, and other macrophages—we captured a detailed landscape of tissue composition at the spot level. In controls, the vessel wall was generally thin and uniform, while atherosclerotic lesions showed substantial intimal thickening, plaque formation, and local necrosis or fibrosis. The color-coded probability maps produced by Cell2Location showed site-specific enrichments of immune or endothelial cell subtypes, reflecting the distinct microenvironments that develop as atherosclerosis advances. (Appendix C)
 
 \subsection{Control Samples Exhibit Low Immune Infiltration and Quiescent Endothelium}
-In control arteries, the thin tunica intima and well-defined lumen were accompanied by minimal cellular accumulations beyond the typical adventitial layer. EndoMT EC and pro-angiogenic EC signals were modest and largely confined to the luminal border, consistent with quiescent endothelium. CD4 and CD8 T-cell signatures were similarly low, appearing sporadically in adventitial regions, which is expected for normal immune surveillance. Macrophages displayed a low-intensity pattern as well, with sporadic detection of oxidative-stress–associated (HMOX1\textsuperscript{+}) or inflammatory phenotypes. This overall profile suggested that control vessels maintained a stable, low-inflammatory state that provided a baseline for subsequent comparisons with diseased samples.
+In control arteries, the thin tunica intima and well-defined lumen were accompanied by minimal cellular accumulations beyond the typical adventitial layer. EndoMT EC and pro-angiogenic EC signals were modest and largely confined to the luminal border, consistent with quiescent endothelium. CD4 and CD8 T-cell signatures were similarly low, appearing sporadically in adventitial regions, which is expected for normal immune surveillance (Figure 1). Macrophages displayed a low-intensity pattern as well, with sporadic detection of oxidative-stress–associated (HMOX1\textsuperscript{+}) or inflammatory phenotypes. This overall profile suggested that control vessels maintained a stable, low-inflammatory state that provided a baseline for subsequent comparisons with diseased samples.
+
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.4\textwidth}
+\includegraphics[width=\textwidth]{cd4pa2}
+\caption{CD4 T-cell signature}
+\label{fig:control_spatial}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.4\textwidth}
+\includegraphics[width=\textwidth]{cd8pa3}
+\caption{CD8 T-cell signature}
+\label{fig:atherosclerosis_spatial}
+\end{subfigure}
+\caption{Low-Inflammatory state in control samples}
+\label{fig:spatial_deconvolution}
+\end{figure}
 
 \subsection{Intermediate Lesions Show Emerging Neovascularization and Immune Infiltration}
 In tissues classified as intermediate lesions, focal thickening of the intima and modest immune recruitment were readily apparent. Pro-angiogenic EC signals appeared elevated relative to controls, often at the interface of the intima and the media, suggesting early neovascular sprouts into regions experiencing hypoxia or inflammation. Small clusters of inflammatory and HMOX1\textsuperscript{+} macrophages localized beneath these nascent plaques, indicating an oxidative-stress response and the onset of lesion-associated inflammation. CD4 and CD8 T cells also increased slightly but did not form large, dense accumulations. These observations underscore the transitional stage in which quiescent arteries begin to exhibit localized endothelial remodeling and immune involvement, setting the stage for more advanced disease phenotypes.
 
-\subsection{Atheromas Display Robust Inflammatory Cell Clusters and Active Neovascularization}
-In fully developed atheromas, which showed substantial intimal thickening and necrotic cores, clear signatures of inflammatory and endothelial changes were evident. Pro-angiogenic ECs formed distinct hotspots, particularly along the plaque shoulders and near necrotic areas, reflecting active microvessel formation. EndoMT ECs became more pronounced, often co-localizing with regions subject to mechanical stress, suggesting a shift toward mesenchymal-like properties that may facilitate extracellular matrix deposition and plaque remodeling. Macrophage populations showed heightened heterogeneity, including foam-cell–like PLIN2\textsuperscript{+}/TREM1\textsuperscript{+} macrophages in lipid-laden zones and HMOX1\textsuperscript{+} macrophages in regions with high oxidative stress. Inflammatory macrophages and other subsets interspersed throughout the lesion, frequently bordering localized T-cell clusters. CD4 and CD8 T cells accumulated in sizable aggregates within the plaque shoulders, a pattern consistent with an ongoing immune response that may contribute to further lesion progression or destabilization.
+MACHT DAS SINN BZW SIOND DIE PLTS HIER DURHCEINENDERGEKOMMEN/FALSCHB @JULIUS
 
+
+\subsection{Atheromas Display Robust Inflammatory Cell Clusters and Active Neovascularization}
+In fully developed atheromas, which showed substantial intimal thickening and necrotic cores, clear signatures of inflammatory and endothelial changes were evident. Pro-angiogenic ECs formed distinct hotspots, particularly along the plaque shoulders and near necrotic areas (Figure 2a), reflecting active microvessel formation. EndoMT ECs became more pronounced, often co-localizing with regions subject to mechanical stress, suggesting a shift toward mesenchymal-like properties that may facilitate extracellular matrix deposition and plaque remodeling. Macrophage populations showed heightened heterogeneity, including foam-cell–like PLIN2\textsuperscript{+}/TREM1\textsuperscript{+} macrophages in lipid-laden zones and HMOX1\textsuperscript{+} macrophages in regions with high oxidative stress (Figure 2b, 2c). Inflammatory macrophages and other subsets interspersed throughout the lesion, frequently bordering localized T-cell clusters. CD4 and CD8 T cells accumulated in sizable aggregates within the plaque shoulders, a pattern consistent with an ongoing immune response that may contribute to further lesion progression or destabilization.
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.3\textwidth}
+\includegraphics[width=\textwidth]{paecpa4}
+\caption{Pro-Angiogenic EC signature}
+\label{fig:control_spatial}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.3\textwidth}
+\includegraphics[width=\textwidth]{hmoxpa5}
+\caption{HMOX1\textsuperscript{+} macrophage signature}
+\label{fig:atherosclerosis_spatial}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.3\textwidth}
+\includegraphics[width=\textwidth]{plnpa6}
+\caption{PLIN2\textsuperscript{+}/TREM1\textsuperscript{+} macrophage signature}
+\label{fig:atherosclerosis_spatial}
+\end{subfigure}
+\caption{Inflammatory cell clusters in atheroma samples}
+\label{fig:spatial_deconvolution}
+\end{figure}
 \subsection{Fibroatheromas Exhibit Extensive Lesion Architecture with Thick Fibrous Caps}
 In fibroatheromas, an advanced stage of atherosclerosis marked by well-defined fibrous caps overlying large necrotic cores, neovascularization and robust immune infiltrates persisted. Pro-angiogenic ECs and EndoMT ECs remained conspicuous along both the fibrous cap and intraplaque microvessels, illustrating the continued plasticity of endothelial populations. Macrophage density was similarly elevated, particularly in zones just beneath the fibrous cap and adjacent to the necrotic core, where oxidative stress and inflammatory cues frequently overlap. Foam-cell–like PLIN2\textsuperscript{+}/TREM1\textsuperscript{+} macrophages indicated prolonged lipid accumulation, while HMOX1\textsuperscript{+} cells provided evidence of sustained oxidative stress. Interestingly, both CD4 and CD8 T cells did not exhibit strong presence in the periphery of these macrophage clusters in the plaque shoulder and adventitial areas.
-
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.3\textwidth}
+\includegraphics[width=\textwidth]{paecpa9}
+\caption{Pro-Angiogenic EC signature}
+\label{fig:control_spatial}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.3\textwidth}
+\includegraphics[width=\textwidth]{hmoxpa8}
+\caption{HMOX1\textsuperscript{+} macrophage signature}
+\label{fig:atherosclerosis_spatial}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.3\textwidth}
+\includegraphics[width=\textwidth]{plnpa7}
+\caption{PLIN2\textsuperscript{+}/TREM1\textsuperscript{+} macrophage signature}
+\label{fig:atherosclerosis_spatial}
+\end{subfigure}
+\caption{Inflammatory cell clusters in fibroatheroma samples}
+\label{fig:spatial_deconvolution}
+\end{figure}
 \subsection{Comparative Overview Across Lesion Stages}
 Overall, the spatial distribution of immune and endothelial cell types underscores a continuum of disease progression from minimal immune activation and quiescent endothelium in control vessels to intensely inflamed and highly vascularized tissue in fibroatheromas. Early lesions are typified by modest neovascular sprouts and low to moderate immune cell clustering, whereas atheromas show more pervasive endothelial remodeling and heterogenous macrophage populations, often in proximity to T-cell aggregates. Fibroatheromas extend these patterns, featuring thick fibrous caps, necrotic cores, persistent oxidative stress, and active neovascularization. Pro-angiogenic ECs consistently expanded across the plaque stages, correlating with increasing neovascular niches, while EndoMT ECs became more evident in advanced disease, hinting at endothelial cells acquiring mesenchymal traits that may facilitate further matrix deposition. Together, these findings reveal that progressive endothelial plasticity and macrophage/T-cell crosstalk shape the complex microenvironment of the atherosclerotic plaque, illuminating key processes that could be therapeutically targeted to modulate plaque growth and stability.
 
