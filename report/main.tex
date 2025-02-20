@@ -9,6 +9,7 @@
 \usepackage{microtype}
 \usepackage{verbatim}
 \usepackage{natbib}
+\graphicspath{ {./images/} }
 
 \title{Spatial Deconvolution of Pro-Angiogenic Endothelial Cells in Human Atherosclerotic Plaques Using Cell2Location}
 
@@ -49,6 +50,7 @@ Pro-angiogenic endothelial cells (ECs) have emerged as key drivers of neovascula
 Visium spatial transcriptomics, developed by 10x Genomics, provides high-throughput gene expression measurements at defined spots within the tissue. By overlaying histological information with spot-level RNA counts, one can identify distinct plaque regions—such as the fibrous cap, lipid core, and adventitia—and study the cellular composition in each. However, these spot-level data typically contain mixtures of multiple cell types, prompting the need for computational deconvolution methods to parse out the contributions of various cell populations. Cell2Location \citep{Kleshchevnikov2022-vd} addresses this challenge by leveraging gene expression signatures inferred from scRNA-seq to estimate absolute cell-type abundances in each spatial spot, thus enabling higher-resolution insights into tissue organization.
 
 In this study, we integrate Visium spatial transcriptomic data from human coronary artery samples at different stages of atherosclerosis with a large, harmonized scRNA-seq reference atlas of plaque-associated cell types \citep{Traeuble2024-de}. We employ Cell2Location to (1) accurately estimate the spatial abundance of diverse immune and vascular cell types, including specialized EC subsets, and (2) systematically map the distribution of pro-angiogenic ECs within and across plaque regions. We hypothesize that pro-angiogenic ECs exhibit distinct spatial patterns, being enriched in neovascularized or inflamed plaque areas, thereby contributing to both vascular remodeling and lesion progression. By elucidating these spatial dynamics, we provide a refined view of endothelial heterogeneity that may guide future mechanistic and therapeutic studies in atherosclerosis.
+\begin{comment}
 
 \begin{itemize}
   \item Background on atherosclerosis and the significance of spatial transcriptomics.
@@ -58,6 +60,7 @@ In this study, we integrate Visium spatial transcriptomic data from human corona
   \item Hypothesis: Where are the pro-angiogenic ECs located spatially within atherosclerotic plaques?
 \end{itemize}
 
+\end{comment}
 
 \section{Methods}
 \subsection{Data Sources}
@@ -84,16 +87,19 @@ Since we are interested in Pro-Angiogenic Endothelial
 Cells, we focused on the level 2 cell type annotation. We built two different regression models for the reference data, both using the donor ID as the batch key and level 2 cell type annotations as the labels key. One model additionally included Assay as a categorical covariate. The models were trained for 250 epochs using GPU acceleration. After training, we summarized the posterior distribution and exported the estimated cell abundances to the reference data.
 
 \subsection{Spot Deconvolution and Cell type mapping}
-TODO: We tried out with different Hyperparameters. Finish this
 
-Once the reference signatures were established, we proceeded with mapping, where these cell-type signatures were projected onto the spatial transcriptomics dataset. In this step, Cell2Location utilizes a Bayesian model to deconvolve the spatially resolved bulk RNA counts into estimated proportions of each cell type across spatial locations.
+Once the reference signatures were established, we proceeded with cell type mapping, where the inferred cell-type signatures were projected onto the spatial transcriptomics dataset. This process involved deconvolution of the spatially resolved bulk RNA counts into estimated proportions of each cell type across spatial locations using Cell2Location’s Bayesian model.
 
-We first identified shared genes (intersection) between the reference dataset and the Visium dataset. We then set up the model with 12 different samples as the batch key, using the following hyperparameters:
+We first identified shared genes (intersection) between the reference dataset and the Visium dataset to ensure compatibility. The model was then set up with the 12 different Visium samples as the batch key, using the following hyperparameters:
+
 \begin{itemize}
-    \item{Number of cells per location: 5}
+    \item{Number of cells per location: 5, 7, and 10 (evaluated separately), chosen based on the expected number of cells per spot in Visium data.}
     \item{Regularization strength (detection\_alpha): 200}
 \end{itemize}
-We then trained the model for 15,000 epochs.
+
+Each configuration was trained for 30,000 epochs using GPU acceleration. We assessed the impact of varying the number of cells per location by comparing the resulting spatial distributions of key cell types, particularly Pro-Angiogenic Endothelial Cells.
+
+To evaluate model performance, we examined the consistency of spatial patterns with known histopathological features of atherosclerosis. Among the tested values, 10 yielded the most biologically meaningful results, aligning with prior histological findings. Therefore, we selected this configuration for further downstream analysis and visualization.
 
 \begin{comment}
  
@@ -112,9 +118,9 @@ The algorithm borrows statistical strength across spatial locations, enhancing t
 
 \subsection{Spatial Localization and Functional Analysis}
 
-Following mapping, the post-processing step involves visualization and interpretation of the spatial distribution of inferred cell types. We used the function pl.spatial from the package SCANPY \citep{scanpy} to visualize the proportion of Pro-Angiogenic EC and EndoMT EC of each slide. 
+Following mapping, the post-processing step involves visualization and interpretation of the spatial distribution of inferred cell types. We used the function \textit{pl.spatial()} from the package SCANPY \citep{scanpy} to visualize the proportion of Pro-Angiogenic ECs and EndoMT ECs across each slide. Additionally, we examined T cells (CD4+ and CD8+) and Macrophages (including HMOX1+ Macrophages, Inflammatory Macrophages, and other subtypes) to identify key immune cell distributions within the tissue.
 
-TODO: What did we do here?
+TODO: What did we do here further?
 
 \begin{comment}
 We analyzed the localization of pro-angiogenic ECs, their co-localization with other vascular and immune cells, and performed pathway enrichment analyses to identify angiogenesis-related genes.
@@ -129,6 +135,8 @@ We analyzed the localization of pro-angiogenic ECs, their co-localization with o
 \end{itemize}
 
 \end{comment}
+
+\newpage
 
 \section{Results}
 
@@ -212,7 +220,7 @@ Future investigations should build on these findings by integrating additional o
 Beyond the integration of multi-omics, a key priority is translating these spatial insights into functional models. Experimentally manipulating the specific signaling pathways driving pro-angiogenic EC expansion or EndoMT activation in vivo or in vitro may elucidate novel targets for therapeutic intervention. Given the heterogeneity of atherosclerosis across vascular beds and between individuals, future studies should also encompass larger patient cohorts and multiple arterial territories to define conserved versus context-specific endothelial behaviors. Collectively, these steps will help to transform the detailed spatial maps of cell populations into clinically actionable strategies for personalized management of atherosclerosis.
 
 Bezüglich eurem kommentar in future directions. vor ein par tagen kam ein preprint raus (https://www.medrxiv.org/content/10.1101/2025.02.09.25321955v1) der sich spatial proteomics auf coronary arteries angeschaut hat. Vlt haben die auch irgendwelche interestanten ergebnisse die mit unseren überlappen... Falls ihr die Zeit dafür findet wäre das noch ein bonus. Sind aber auch jetzt schon wirklich super ergebnisse!
-
+\begin{comment}
 \subsection{Biological Implications}
 Our findings suggest that pro-angiogenic ECs contribute to neovascularization and may play a role in plaque instability.
 
@@ -237,7 +245,7 @@ Further studies integrating multi-omics data could enhance our understanding of 
   \item Potential for integrating multi-omics data (e.g., spatial metabolomics).
 \end{itemize}
 
-
+\end{comment}
 
 \section{Conclusion}
 This study maps the spatial distribution of pro-angiogenic ECs in atherosclerotic plaques, providing insights into their role in vascular remodeling and plaque progression.
@@ -251,14 +259,89 @@ By offering high-resolution maps of cellular interactions, spatial transcriptomi
   \item Final remarks on the significance of spatial transcriptomics for understanding vascular biology.
 \end{itemize}
 
-\section{Data availability}  
-Detailed information on the data used for this study can be found in the Methods. Information about the Visium data used for this study can be found at \url{https://zenodo.org/records/14007461} and \url{https://www.10xgenomics.com/products/spatial-gene-expression}, respectively. All other remaining data are available within the article or may be available from the authors upon request.  
-
-\section{Code availability}  
-The code for this study is available on GitHub at \url{https://github.com/github4touchdouble/proangioec_cell2location_visium}.  
-
 
 \bibliographystyle{apalike}
 \bibliography{references}  % Ensure you have a references.bib file
 
+\newpage
+\appendix
+\section{Appendix: Data availability}  
+Detailed information on the data used for this study can be found in the Methods. Information about the Visium data used for this study can be found at \url{https://zenodo.org/records/14007461} and \url{https://www.10xgenomics.com/products/spatial-gene-expression}, respectively. All other remaining data are available within the article or may be available from the authors upon request.  
+
+\section{Appendix: Code availability}  
+The code for this study is available on GitHub at \url{https://github.com/github4touchdouble/proangioec_cell2location_visium}. 
+
+\section{Appendix: Additional Figures}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.1\textwidth]{spatialControl1}
+    \caption{Spatial cell types for control sample FW106012}
+    \label{fig:appendix1}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.1\textwidth]{spatialControl2}
+    \caption{Spatial cell types for control sample FW106010}
+    \label{fig:appendix1}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.1\textwidth]{spatialControl3}
+    \caption{Spatial cell types for control sample FW106018}
+    \label{fig:appendix1}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.1\textwidth]{spatialAtheroma1}
+    \caption{Spatial cell types for atheroma sample FW106022}
+    \label{fig:appendix1}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.1\textwidth]{spatialAtheroma2}
+    \caption{Spatial cell types for atheroma sample FW104860}
+    \label{fig:appendix1}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.1\textwidth]{spatialAtheroma3}
+    \caption{Spatial cell types for atheroma sample FW106005v2}
+    \label{fig:appendix1}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.1\textwidth]{spatialAtheroma4}
+    \caption{Spatial cell types for atheroma sample FW106014}
+    \label{fig:appendix1}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.1\textwidth]{spatialAtheroma5}
+    \caption{Spatial cell types for atheroma sample FW106016}
+    \label{fig:appendix1}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.1\textwidth]{spatialFibroatheroma1}
+    \caption{Spatial cell types for fibroatheroma sample FW104302}
+    \label{fig:appendix1}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.1\textwidth]{spatialFibroatheroma2}
+    \caption{Spatial cell types for fibroatheroma sample FW104306}
+    \label{fig:appendix1}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.1\textwidth]{spatialIntermediateLesion1}
+    \caption{Spatial cell types for intermediate lesion sample FW106008}
+    \label{fig:appendix1}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.1\textwidth]{spatialIntermediateLesion2}
+    \caption{Spatial cell types for intermediate lesion sample FW106006}
+    \label{fig:appendix1}
+\end{figure}
 \end{document}
