@@ -135,6 +135,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+var
 
 # Spyder project settings
 .spyderproject
@@ -173,3 +174,10 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 .DS_Store/
+/plots/
+/.idea/.gitignore
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/proangioec_cell2location_visium.iml
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/vcs.xml

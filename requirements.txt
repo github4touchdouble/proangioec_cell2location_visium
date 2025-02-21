@@ -7,3 +7,6 @@ seaborn
 cell2location
 numpy
 python-dotenv
+torch
+opencv-python
+argparse
