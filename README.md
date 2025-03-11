@@ -2,7 +2,6 @@
 
 # Spatial Deconvolution of Pro-Angiogenic Endothelial Cells in Human Atherosclerotic Plaques
 
-#### Final results: https://drive.google.com/file/d/1FXrZSJqAV4TvRap4WQRqJCcdH-wUs99j/view?usp=sharing
 ---
 
 ## Setting Up the Local Python Environment
