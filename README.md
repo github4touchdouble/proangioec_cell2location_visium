@@ -74,5 +74,5 @@ python3 compare_plots.py n5.png n7.png n10.png -o diff_ncells_5_7_10.png
 # Data and Material
 Visium Data: Bleckwehl et al. (2024)  [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14007461.svg)](https://doi.org/10.5281/zenodo.14007461) \
 Cell2location:  Kleshchevnikov et al. (2022) [![DOI](https://zenodo.org/badge/DOI/10.1038/s41587-021-01139-4.svg)](https://doi.org/10.1038/s41587-021-01139-4) \
-Single Cell Atlas:  Traeuble et al. (2014) [![DOI](https://img.shields.io/badge/DOI-10.1101%2F2024.09.11.612431-blue)](https://doi.org/10.1101/2024.09.11.612431)
+Single Cell Atlas:  Traeuble et al. (2024) [![DOI](https://img.shields.io/badge/DOI-10.1101%2F2024.09.11.612431-blue)](https://doi.org/10.1101/2024.09.11.612431)
 
