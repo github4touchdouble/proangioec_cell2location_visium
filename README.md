@@ -1,8 +1,19 @@
 ![Welcome](https://github.com/user-attachments/assets/691aa3ec-b420-4ce6-ad26-b637c7683f3e)
 
 # Spatial Deconvolution of Pro-Angiogenic Endothelial Cells in Human Atherosclerotic Plaques
+> [!NOTE]
+> For further insights, refer to the corresponding paper accessible [here](https://drive.google.com/file/d/1FXrZSJqAV4TvRap4WQRqJCcdH-wUs99j/view?usp=sharing).
 
+T. Truc Bui, Max-Malte Hansen, Jan P. Hummel, Julius J. Stein, Korbinian Traeuble 
+
+Technical University of Munich & Helmholtz Munich
+
+Contact via: [jan.hummel@tum.de](mailto:jan.hummel@tum.de)
 ---
+
+## Overview  
+We mapped endothelial cell subtypes using **Visium spatial transcriptomics** and **Cell2Location**, with a focus on **pro-angiogenic endothelial cells**. By integrating **single-cell RNA sequencing (scRNA-seq)**, we enhanced spatial resolution to uncover their **distribution, function, and role in angiogenesis** within tissue microenvironments.  
+
 
 ## Setting Up the Local Python Environment
 
